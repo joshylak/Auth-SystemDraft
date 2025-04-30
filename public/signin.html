@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signin</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <form id="signinForm">
+    <h1>Signin</h1>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+
+    <label for="otp">OTP:</label>
+    <input type="text" id="otp" name="otp" required>
+
+    <button type="submit">Signin</button>
+  </form>
+
+  <script>
+    document.getElementById('signinForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const otp = document.getElementById('otp').value;
+
+      const response = await fetch('http://localhost:5000/auth/signin', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password, otp }),
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        alert(`Signin successful! Token: ${result.token}`);
+      } else {
+        alert(result.message);
+      }
+    });
+  </script>
+</body>
+</html>

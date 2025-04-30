@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <form id="signupForm">
+    <h1>Signup</h1>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+
+    <label for="firstname">First Name:</label>
+    <input type="text" id="firstname" name="firstname" required>
+
+    <label for="lastname">Last Name:</label>
+    <input type="text" id="lastname" name="lastname" required>
+
+    <label for="phone_number">Phone Number:</label>
+    <input type="text" id="phone_number" name="phone_number" required>
+
+    <button type="submit">Signup</button>
+  </form>
+
+  <script>
+    document.getElementById('signupForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      console.log('Signup form submitted'); // Debugging log
+
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const firstname = document.getElementById('firstname').value;
+      const lastname = document.getElementById('lastname').value;
+      const phone_number = document.getElementById('phone_number').value;
+
+      console.log({ email, password, firstname, lastname, phone_number }); // Debugging log
+
+      try {
+        const response = await fetch('http://localhost:5000/auth/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password, firstname, lastname, phone_number }),
+        });
+
+        console.log('Fetch response:', response); // Debugging log
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json();
+        console.log('Response JSON:', result); // Debugging log
+        alert(result.message);
+      } catch (error) {
+        console.error('Error:', error); // Debugging log
+        alert('An error occurred. Please try again.');
+      }
+    });
+  </script>
+</body>
+</html>

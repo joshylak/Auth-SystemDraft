@@ -1,0 +1,24 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "authDB2",
+            "database": "authDB2",
+            "username": "lakin",
+            "password": "Ballzy"
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 6542,
+            "driver": "PostgreSQL",
+            "name": "authDB2",
+            "database": "authdb",
+            "username": "root",
+            "password": "Ballzy"
+        }
+    ]
+}

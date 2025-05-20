@@ -1,7 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const sendTokenEmail = require('../utils/mailer'); // Ensure this utility is implemented
+const sendTokenEmail = require('../../utils/mailer'); // Ensure this utility is implemented
 const User = require('../models/user'); // Ensure this is your Objection.js model
 require('dotenv').config();
 
